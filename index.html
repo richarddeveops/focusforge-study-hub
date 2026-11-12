@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#211c38">
+    <meta name="description" content="FocusForge is your calm, personal command center for studying with intention.">
+    <title>FocusForge — make room for focus</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+</head>
+<body data-page="overview">
+    <div class="app-shell">
+        <aside class="sidebar" aria-label="Main sidebar">
+            <a class="brand" href="index.html" aria-label="FocusForge home">
+                <span class="brand-mark" aria-hidden="true">F</span>
+                <span>focus<span class="brand-light">forge</span></span>
+            </a>
+
+            <div class="sidebar-label">YOUR SPACE</div>
+            <nav class="main-nav" aria-label="Main navigation">
+                <a class="nav-link is-active" href="index.html" aria-current="page" title="Overview">
+                    <span class="nav-icon" aria-hidden="true">⌂</span> Overview
+                </a>
+                <a class="nav-link" href="tasks.html" title="My tasks">
+                    <span class="nav-icon" aria-hidden="true">✓</span> My tasks
+                    <span class="nav-count" id="nav-task-count">0</span>
+                </a>
+                <a class="nav-link" href="focus.html" title="Focus room">
+                    <span class="nav-icon" aria-hidden="true">◷</span> Focus room
+                </a>
+                <a class="nav-link" href="progress.html" title="My progress">
+                    <span class="nav-icon" aria-hidden="true">↗</span> My progress
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="sidebar-note">
+                    <span class="note-spark" aria-hidden="true">✦</span>
+                    <p class="eyebrow">A LITTLE REMINDER</p>
+                    <p>Small steps count. Show up for the next one.</p>
+                </div>
+                <button class="profile-button" id="profile-button" type="button" aria-label="Edit your name">
+                    <span class="avatar" aria-hidden="true">S</span>
+                    <span class="profile-copy"><strong id="profile-name">Student</strong><small>Your study space</small></span>
+                    <span class="profile-edit" aria-hidden="true">···</span>
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content" id="home">
+            <header class="topbar">
+                <div class="breadcrumb"><span>YOUR WORKSPACE</span><span class="breadcrumb-divider">/</span><strong>Overview</strong></div>
+                <div class="topbar-actions">
+                    <span class="today-label" id="today-label"></span>
+                    <button class="icon-button" id="theme-button" type="button" aria-label="Switch color theme" title="Switch color theme">
+                        <span aria-hidden="true">◐</span>
+                    </button>
+                </div>
+            </header>
+
+            <section class="welcome-section" aria-labelledby="welcome-title">
+                <div>
+                    <p class="eyebrow welcome-eyebrow"><span class="live-dot"></span> YOUR SPACE TO DO GREAT THINGS</p>
+                    <h1 id="welcome-title">Make room for <span>focus.</span></h1>
+                    <p class="welcome-copy">A clear plan makes space for your best work. Let’s make today count.</p>
+                </div>
+                <div class="date-card" aria-label="Today's date">
+                    <span class="date-card-icon" aria-hidden="true">✳</span>
+                    <div><span class="eyebrow">TODAY IS</span><strong id="welcome-date"></strong></div>
+                </div>
+            </section>
+
+            <section class="stats-grid" aria-label="Your study summary">
+                <article class="stat-card stat-focus">
+                    <div class="stat-top"><span class="stat-icon focus-icon" aria-hidden="true">◷</span><span class="stat-label">FOCUS TIME</span></div>
+                    <p class="stat-value"><span id="focus-minutes">0</span><small>min</small></p>
+                    <p class="stat-foot">Today’s focused minutes</p>
+                    <span class="stat-decoration" aria-hidden="true">◷</span>
+                </article>
+                <article class="stat-card stat-tasks">
+                    <div class="stat-top"><span class="stat-icon task-icon" aria-hidden="true">✓</span><span class="stat-label">TASKS DONE</span></div>
+                    <p class="stat-value"><span id="tasks-done">0</span><small id="tasks-total-label">/ 0</small></p>
+                    <p class="stat-foot">You’re making progress</p>
+                    <span class="stat-decoration" aria-hidden="true">✓</span>
+                </article>
+                <article class="stat-card stat-streak">
+                    <div class="stat-top"><span class="stat-icon streak-icon" aria-hidden="true">✦</span><span class="stat-label">DAY STREAK</span></div>
+                    <p class="stat-value"><span id="day-streak">0</span><small id="streak-unit">days</small></p>
+                    <p class="stat-foot">Keep your momentum going</p>
+                    <span class="stat-decoration" aria-hidden="true">✦</span>
+                </article>
+            </section>
+
+            <div class="content-grid">
+                <section class="panel tasks-panel" aria-labelledby="tasks-title">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="eyebrow">ONE STEP AT A TIME</p>
+                            <h2 id="tasks-title">Today’s tasks <span class="heading-spark" aria-hidden="true">✳</span></h2>
+                        </div>
+                        <button class="primary-button add-task-button" id="open-task-dialog" type="button"><span aria-hidden="true">＋</span> Add task</button>
+                    </div>
+                    <div class="task-progress">
+                        <div class="progress-label"><span id="task-progress-copy">You’re just getting started</span><strong id="task-progress-percent">0%</strong></div>
+                        <div class="progress-track" role="progressbar" aria-label="Today's tasks completed" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="task-progress-bar"><span id="task-progress-fill"></span></div>
+                    </div>
+                    <div class="task-list" id="task-list" aria-live="polite"></div>
+                    <div class="empty-state" id="empty-state" hidden>
+                        <span aria-hidden="true">✳</span>
+                        <strong>Your list is a blank page.</strong>
+                        <p>Add one small task and get the ball rolling.</p>
+                    </div>
+                </section>
+
+                <section class="panel focus-panel" aria-labelledby="focus-title">
+                    <div class="panel-heading focus-heading">
+                        <div>
+                            <p class="eyebrow">YOUR FOCUS ROOM</p>
+                            <h2 id="focus-title">Deep work</h2>
+                        </div>
+                        <span class="focus-badge"><span class="live-dot"></span> READY WHEN YOU ARE</span>
+                    </div>
+                    <p class="focus-intro">One thing at a time. Give it your full attention.</p>
+                    <div class="timer-wrap">
+                        <svg class="timer-ring" viewBox="0 0 220 220" role="img" aria-label="Focus timer">
+                            <circle class="timer-ring-track" cx="110" cy="110" r="99"></circle>
+                            <circle class="timer-ring-progress" id="timer-ring-progress" cx="110" cy="110" r="99"></circle>
+                        </svg>
+                        <div class="timer-face">
+                            <span class="eyebrow" id="timer-mode-label">FOCUS SESSION</span>
+                            <strong id="timer-display" aria-live="off">25:00</strong>
+                            <span class="timer-status" id="timer-status">Ready to begin</span>
+                        </div>
+                    </div>
+                    <div class="timer-controls">
+                        <button class="timer-start" id="timer-start" type="button"><span aria-hidden="true">▶</span> Start focus</button>
+                        <button class="timer-reset" id="timer-reset" type="button" aria-label="Reset timer">↺</button>
+                    </div>
+                    <div class="timer-modes" role="group" aria-label="Choose timer length">
+                        <button class="mode-button is-selected" type="button" data-mode="focus" aria-pressed="true">Focus <span>25m</span></button>
+                        <button class="mode-button" type="button" data-mode="break" aria-pressed="false">Short break <span>5m</span></button>
+                    </div>
+                    <button class="mode-button timer-settings-trigger" id="open-timer-settings" type="button">Timer settings</button>
+                </section>
+            </div>
+
+            <section class="panel progress-panel" aria-labelledby="progress-title">
+                <div class="panel-heading progress-heading">
+                    <div>
+                        <p class="eyebrow">CONSISTENCY OVER PERFECTION</p>
+                        <h2 id="progress-title">Your weekly rhythm <span class="heading-spark" aria-hidden="true">✳</span></h2>
+                    </div>
+                    <div class="week-total"><strong id="week-total">0</strong><span>MIN THIS WEEK</span></div>
+                </div>
+                <div class="week-chart" id="week-chart" aria-label="Focus minutes for the last seven days"></div>
+            </section>
+
+            <footer class="page-footer">
+                <span><span class="footer-mark" aria-hidden="true">✳</span> Built for your next small win.</span>
+                <span>Your progress stays on this device.</span>
+            </footer>
+        </main>
+    </div>
+
+    <dialog class="task-dialog" id="task-dialog" aria-labelledby="dialog-title">
+        <form id="task-form" method="dialog">
+            <div class="dialog-heading">
+                <div><p class="eyebrow">MAKE A LITTLE PLAN</p><h2 id="dialog-title">Add a task</h2></div>
+                <button class="icon-button dialog-close" id="close-task-dialog" type="button" aria-label="Close dialog">×</button>
+            </div>
+            <label for="task-title">What do you want to work on?</label>
+            <input id="task-title" name="title" type="text" maxlength="80" placeholder="e.g. Review my HTML notes" required>
+            <label for="task-subject">Subject</label>
+            <select id="task-subject" name="subject">
+                <option>Study</option>
+                <option>HTML</option>
+                <option>CSS</option>
+                <option>JavaScript</option>
+                <option>Python</option>
+                <option>TypeScript</option>
+                <option>Java</option>
+                <option>C++</option>
+                <option>C#</option>
+                <option>PHP</option>
+                <option>SQL</option>
+                <option>Go</option>
+                <option>Rust</option>
+                <option>Personal</option>
+            </select>
+            <div class="dialog-actions">
+                <button class="secondary-button" id="cancel-task" type="button">Cancel</button>
+                <button class="primary-button" type="submit">Add to my day <span aria-hidden="true">→</span></button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog class="task-dialog name-dialog" id="name-dialog" aria-labelledby="name-dialog-title">
+        <form id="name-form" method="dialog">
+            <div class="dialog-heading"><div><p class="eyebrow">MAKE IT YOURS</p><h2 id="name-dialog-title">What should we call you?</h2></div><button class="icon-button dialog-close" id="close-name-dialog" type="button" aria-label="Close dialog">×</button></div>
+            <label for="name-input">Your name</label>
+            <input id="name-input" name="name" type="text" maxlength="32" placeholder="Your name" required>
+            <div class="dialog-actions"><button class="secondary-button" id="cancel-name" type="button">Cancel</button><button class="primary-button" type="submit">Save name <span aria-hidden="true">→</span></button></div>
+        </form>
+    </dialog>
+
+    <dialog class="task-dialog timer-settings-dialog" id="timer-settings-dialog" aria-labelledby="timer-settings-title">
+        <form id="timer-settings-form">
+            <div class="dialog-heading">
+                <div><p class="eyebrow">MAKE IT YOURS</p><h2 id="timer-settings-title">Timer settings</h2></div>
+                <button class="icon-button dialog-close" id="close-timer-settings" type="button" aria-label="Close timer settings">×</button>
+            </div>
+            <label for="focus-duration">Focus length (minutes)</label>
+            <input id="focus-duration" name="focus-duration" type="number" min="1" max="180" step="1" required>
+            <label for="break-duration">Break length (minutes)</label>
+            <input id="break-duration" name="break-duration" type="number" min="1" max="60" step="1" required>
+            <div class="notification-settings">
+                <button class="secondary-button" id="notifications-toggle" type="button" aria-pressed="false">Enable completion notifications</button>
+                <p id="notifications-status" role="status"></p>
+            </div>
+            <div class="dialog-actions">
+                <button class="primary-button" type="submit">Save settings <span aria-hidden="true">→</span></button>
+            </div>
+        </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

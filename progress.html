@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#211c38">
+    <meta name="description" content="See your FocusForge study streak and focus rhythm for the week.">
+    <title>My progress — FocusForge</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+</head>
+<body data-page="progress">
+    <div class="app-shell">
+        <aside class="sidebar" aria-label="Main sidebar">
+            <a class="brand" href="index.html" aria-label="FocusForge home"><span class="brand-mark" aria-hidden="true">F</span><span>focus<span class="brand-light">forge</span></span></a>
+            <div class="sidebar-label">YOUR SPACE</div>
+            <nav class="main-nav" aria-label="Main navigation">
+                <a class="nav-link" href="index.html" title="Overview"><span class="nav-icon" aria-hidden="true">⌂</span> Overview</a>
+                <a class="nav-link" href="tasks.html" title="My tasks"><span class="nav-icon" aria-hidden="true">✓</span> My tasks <span class="nav-count" id="nav-task-count">0</span></a>
+                <a class="nav-link" href="focus.html" title="Focus room"><span class="nav-icon" aria-hidden="true">◷</span> Focus room</a>
+                <a class="nav-link is-active" href="progress.html" aria-current="page" title="My progress"><span class="nav-icon" aria-hidden="true">↗</span> My progress</a>
+            </nav>
+            <div class="sidebar-bottom"><div class="sidebar-note"><span class="note-spark" aria-hidden="true">✦</span><p class="eyebrow">A LITTLE REMINDER</p><p>Small steps count. Show up for the next one.</p></div><button class="profile-button" id="profile-button" type="button" aria-label="Edit your name"><span class="avatar" aria-hidden="true">S</span><span class="profile-copy"><strong id="profile-name">Student</strong><small>Your study space</small></span><span class="profile-edit" aria-hidden="true">···</span></button></div>
+        </aside>
+        <main class="main-content">
+            <header class="topbar"><div class="breadcrumb"><span>YOUR WORKSPACE</span><span class="breadcrumb-divider">/</span><strong>My progress</strong></div><div class="topbar-actions"><span class="today-label" id="today-label"></span><button class="icon-button" id="theme-button" type="button" aria-label="Switch color theme" title="Switch color theme"><span aria-hidden="true">◐</span></button></div></header>
+            <section class="welcome-section page-welcome" aria-labelledby="page-title"><div><p class="eyebrow welcome-eyebrow"><span class="live-dot"></span> CONSISTENCY OVER PERFECTION</p><h1 id="page-title">Look how far you’ve <span>come.</span></h1><p class="welcome-copy">A little progress each day adds up to big results.</p></div><div class="date-card"><span class="date-card-icon" aria-hidden="true">✳</span><div><span class="eyebrow">TODAY IS</span><strong id="welcome-date"></strong></div></div></section>
+            <section class="stats-grid" aria-label="Your progress summary">
+                <article class="stat-card stat-focus"><div class="stat-top"><span class="stat-icon focus-icon" aria-hidden="true">◷</span><span class="stat-label">FOCUS TODAY</span></div><p class="stat-value"><span id="focus-minutes">0</span><small>min</small></p><p class="stat-foot">Time well spent</p><span class="stat-decoration" aria-hidden="true">◷</span></article>
+                <article class="stat-card stat-tasks"><div class="stat-top"><span class="stat-icon task-icon" aria-hidden="true">✓</span><span class="stat-label">TASKS DONE</span></div><p class="stat-value"><span id="tasks-done">0</span><small id="tasks-total-label">/ 0</small></p><p class="stat-foot">Small wins, stacked up</p><span class="stat-decoration" aria-hidden="true">✓</span></article>
+                <article class="stat-card stat-streak"><div class="stat-top"><span class="stat-icon streak-icon" aria-hidden="true">✦</span><span class="stat-label">DAY STREAK</span></div><p class="stat-value"><span id="day-streak">0</span><small id="streak-unit">days</small></p><p class="stat-foot">Keep your momentum going</p><span class="stat-decoration" aria-hidden="true">✦</span></article>
+            </section>
+            <section class="panel progress-panel progress-page-panel" aria-labelledby="progress-title"><div class="panel-heading progress-heading"><div><p class="eyebrow">CONSISTENCY OVER PERFECTION</p><h2 id="progress-title">Your weekly rhythm <span class="heading-spark" aria-hidden="true">✳</span></h2></div><div class="week-total"><strong id="week-total">0</strong><span>MIN THIS WEEK</span></div></div><p class="chart-intro">Your focus minutes for the last seven days. Every bar represents time you chose to show up.</p><div class="week-chart" id="week-chart" aria-label="Focus minutes for the last seven days"></div><p class="chart-note"><span aria-hidden="true">✳</span> Your progress belongs to you. Keep moving at your own pace.</p></section>
+            <footer class="page-footer"><span><span class="footer-mark" aria-hidden="true">✳</span> Built for your next small win.</span><span>Your progress stays on this device.</span></footer>
+        </main>
+    </div>
+    <dialog class="task-dialog name-dialog" id="name-dialog" aria-labelledby="name-dialog-title"><form id="name-form" method="dialog"><div class="dialog-heading"><div><p class="eyebrow">MAKE IT YOURS</p><h2 id="name-dialog-title">What should we call you?</h2></div><button class="icon-button dialog-close" id="close-name-dialog" type="button" aria-label="Close dialog">×</button></div><label for="name-input">Your name</label><input id="name-input" name="name" type="text" maxlength="32" placeholder="Your name" required><div class="dialog-actions"><button class="secondary-button" id="cancel-name" type="button">Cancel</button><button class="primary-button" type="submit">Save name <span aria-hidden="true">→</span></button></div></form></dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
